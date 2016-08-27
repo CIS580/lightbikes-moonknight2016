@@ -1,6 +1,13 @@
-var canvas document.GetElementbyId('screen');
-var ctx = canvas.getContext('2d');
-var speed = 1/16/1000;
+/*var c = document.getElementById("screen");
+var ctx = c.getContext("2d");
+ctx.fillRect(20, 20, 150, 100);
+
+*/
+
+var canvas = document.getElementById("screen");
+var ctx = canvas.getContext("2d");
+
+var speed = 2/16/1000;
 
 var x = 0;
 var y = 0;
@@ -11,26 +18,31 @@ down: false,
 lef: false,
 right: false
 }
+
 window.onkeydown = function(event) {
 
-console.log(event.keyCode);
+//console.log(event.keyCode);
 switch(event.keyCode) {
 case 38:
 case 87:
 y-=1;
-input.up = true
+input.up = true;
 break;
 case 37:
 case 65:
 x-=1;
+input.left = true;
 break;
 case 39:
 case 68:
-x+1;
+x+=1;
+input.right = true;
 break;
 
 case 40:
-case: 83:
+case 83:
+y+=1;
+input.down = true;
 break;
 
 
@@ -39,39 +51,40 @@ break;
 }
 
 }
-
-
-
 
 window.onkeyup = function(event) {
 
-console.log(event.keyCode);
+//console.log(event.keyCode);
 
-event.preventDefualt();
+event.preventDefault()
 switch(event.keyCode) {
 case 38:
 case 87:
 y-=1;
-input.up = false
+input.up = false;
 break;
 case 37:
 case 65:
 x-=1;
+input.left = false;
 break;
 case 39:
 case 68:
-x+1;
+x+=1;
+input.right = false;
 break;
 
 case 40:
-case: 83:
+case 83:
+y+=1;
+input.down = false;
 break;
 
 
 
 
 }
-return false;.
+return false;
 }
 
 
@@ -80,17 +93,18 @@ return false;.
 
 function  loop()
 {
-while(true)
-{
-ctx.fillStyle('red');
-ctx.fillRect(50,50,50,50);
-x++;
-}
-if (input.up) y = -1;
-if(input.down) y += 1;
-if (input.left)
 
-setTimeout(loop,200);
+ctx.fillStyle  = "red";
+ctx.fillRect(x,y,50,50);
+
+if (input.up) y -= 1;
+if(input.down) y += 1;
+
+if (input.left) x -= 1;
+if(input.right) x += 1;
+setTimeout(loop,speed);
+
+
 }
 
 loop();
