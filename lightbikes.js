@@ -13,7 +13,7 @@ var x = 0;
 var y = 0;
 
 var input = {
-up: false,
+up: false,//
 down: false,
 lef: false,
 right: false
